@@ -1,0 +1,455 @@
+{
+  "settings": {
+    "brand": "Rasa Bharat",
+    "tagline": "Pure Indian juices, pressed fresh",
+    "announcement": "🎉 Use code FRESH10 for 10% off · Free delivery above ₹499",
+    "heroTitle": "Taste the real\nswad of India",
+    "heroSub": "Cold-pressed mango, mosambi, kokum, jaljeera & more — made from Indian orchards, with no added preservatives.",
+    "deliveryFee": 40,
+    "freeDeliveryAbove": 499,
+    "whatsapp": "919999999999",
+    "phone": "+91 99999 99999",
+    "email": "hello@rasabharat.in",
+    "address": "Mumbai, Maharashtra, India",
+    "upi": "rasabharat@upi",
+    "categories": [
+      "Fruit Juices",
+      "Desi Coolers",
+      "Health Shots",
+      "Coconut & Cane",
+      "Combo Packs"
+    ],
+    "storeOpen": true,
+    "adminPassword": "admin123"
+  },
+  "products": [
+    {
+      "id": "p1",
+      "name": "Alphonso Mango Juice",
+      "category": "Fruit Juices",
+      "price": 89,
+      "mrp": 110,
+      "stock": 60,
+      "emoji": "🥭",
+      "color": "#FFB300",
+      "image": "",
+      "size": "300 ml",
+      "badge": "Bestseller",
+      "rating": 4.9,
+      "desc": "Sun-ripened Ratnagiri Alphonso mangoes, pulped and chilled. Thick, golden and pure.",
+      "active": true
+    },
+    {
+      "id": "p2",
+      "name": "Aam Panna",
+      "category": "Desi Coolers",
+      "price": 69,
+      "mrp": 85,
+      "stock": 45,
+      "emoji": "🥭",
+      "color": "#8BC34A",
+      "image": "",
+      "size": "300 ml",
+      "badge": "Summer Fav",
+      "rating": 4.8,
+      "desc": "Raw mango, roasted cumin and fresh mint — the classic Indian summer cooler.",
+      "active": true
+    },
+    {
+      "id": "p3",
+      "name": "Masala Jaljeera",
+      "category": "Desi Coolers",
+      "price": 59,
+      "mrp": 75,
+      "stock": 50,
+      "emoji": "🌿",
+      "color": "#4CAF50",
+      "image": "",
+      "size": "300 ml",
+      "badge": "",
+      "rating": 4.7,
+      "desc": "Tangy, spicy and digestive. Cumin, mint, black salt and a hint of tamarind.",
+      "active": true
+    },
+    {
+      "id": "p4",
+      "name": "Nagpur Mosambi",
+      "category": "Fruit Juices",
+      "price": 79,
+      "mrp": 95,
+      "stock": 40,
+      "emoji": "🍊",
+      "color": "#FF9800",
+      "image": "",
+      "size": "300 ml",
+      "badge": "",
+      "rating": 4.6,
+      "desc": "Sweet lime from Nagpur orchards, cold-pressed with zero added sugar.",
+      "active": true
+    },
+    {
+      "id": "p5",
+      "name": "Kashmiri Pomegranate",
+      "category": "Fruit Juices",
+      "price": 119,
+      "mrp": 140,
+      "stock": 30,
+      "emoji": "🍎",
+      "color": "#E53950",
+      "image": "",
+      "size": "250 ml",
+      "badge": "Premium",
+      "rating": 4.9,
+      "desc": "Ruby-red anar pressed fresh. Rich in antioxidants, naturally sweet.",
+      "active": true
+    },
+    {
+      "id": "p6",
+      "name": "Fresh Sugarcane Juice",
+      "category": "Coconut & Cane",
+      "price": 49,
+      "mrp": 60,
+      "stock": 70,
+      "emoji": "🌾",
+      "color": "#9CCC65",
+      "image": "",
+      "size": "300 ml",
+      "badge": "",
+      "rating": 4.7,
+      "desc": "Roadside-style ganne ka ras with ginger and lemon, bottled the same day.",
+      "active": true
+    },
+    {
+      "id": "p7",
+      "name": "Tender Coconut Water",
+      "category": "Coconut & Cane",
+      "price": 59,
+      "mrp": 70,
+      "stock": 55,
+      "emoji": "🥥",
+      "color": "#26A69A",
+      "image": "",
+      "size": "300 ml",
+      "badge": "Hydrating",
+      "rating": 4.8,
+      "desc": "Straight from South Indian coconuts. Nature’s own electrolyte drink.",
+      "active": true
+    },
+    {
+      "id": "p8",
+      "name": "Kokum Sharbat",
+      "category": "Desi Coolers",
+      "price": 75,
+      "mrp": 90,
+      "stock": 35,
+      "emoji": "🍇",
+      "color": "#8E24AA",
+      "image": "",
+      "size": "300 ml",
+      "badge": "",
+      "rating": 4.6,
+      "desc": "Konkan kokum with a pinch of roasted jeera. Cooling and deeply refreshing.",
+      "active": true
+    },
+    {
+      "id": "p9",
+      "name": "Amla Immunity Shot",
+      "category": "Health Shots",
+      "price": 49,
+      "mrp": 60,
+      "stock": 80,
+      "emoji": "🍏",
+      "color": "#7CB342",
+      "image": "",
+      "size": "60 ml",
+      "badge": "Immunity",
+      "rating": 4.5,
+      "desc": "Indian gooseberry shot, a daily dose of Vitamin C. Quick, sharp and good for you.",
+      "active": true
+    },
+    {
+      "id": "p10",
+      "name": "Litchi Delight",
+      "category": "Fruit Juices",
+      "price": 99,
+      "mrp": 120,
+      "stock": 28,
+      "emoji": "🍑",
+      "color": "#FF7A9A",
+      "image": "",
+      "size": "300 ml",
+      "badge": "New",
+      "rating": 4.7,
+      "desc": "Muzaffarpur litchis, floral and juicy. Summer in a bottle.",
+      "active": true
+    },
+    {
+      "id": "p11",
+      "name": "Thandai Chill",
+      "category": "Desi Coolers",
+      "price": 89,
+      "mrp": 105,
+      "stock": 25,
+      "emoji": "🥛",
+      "color": "#F4C27A",
+      "image": "",
+      "size": "300 ml",
+      "badge": "Festive",
+      "rating": 4.8,
+      "desc": "Almonds, saffron, fennel and rose — a festive cooler for every occasion.",
+      "active": true
+    },
+    {
+      "id": "p12",
+      "name": "Guava Masala",
+      "category": "Fruit Juices",
+      "price": 79,
+      "mrp": 95,
+      "stock": 42,
+      "emoji": "🍐",
+      "color": "#F06292",
+      "image": "",
+      "size": "300 ml",
+      "badge": "",
+      "rating": 4.6,
+      "desc": "Pink guava with chaat masala — nostalgic street-side flavour.",
+      "active": true
+    },
+    {
+      "id": "p13",
+      "name": "Turmeric Ginger Shot",
+      "category": "Health Shots",
+      "price": 55,
+      "mrp": 65,
+      "stock": 60,
+      "emoji": "🌱",
+      "color": "#FFA000",
+      "image": "",
+      "size": "60 ml",
+      "badge": "Wellness",
+      "rating": 4.5,
+      "desc": "Haldi, adrak, black pepper and lemon. Your daily wellness ritual.",
+      "active": true
+    },
+    {
+      "id": "p14",
+      "name": "Summer Combo – 6 Pack",
+      "category": "Combo Packs",
+      "price": 399,
+      "mrp": 530,
+      "stock": 20,
+      "emoji": "🧃",
+      "color": "#FF8A1F",
+      "image": "",
+      "size": "6 × 300 ml",
+      "badge": "Save 25%",
+      "rating": 4.9,
+      "desc": "Mango, Aam Panna, Jaljeera, Mosambi, Coconut and Litchi — the full desi tour.",
+      "active": true
+    }
+  ],
+  "coupons": [
+    {
+      "code": "FRESH10",
+      "type": "percent",
+      "value": 10,
+      "minOrder": 199,
+      "active": true
+    },
+    {
+      "code": "WELCOME50",
+      "type": "flat",
+      "value": 50,
+      "minOrder": 299,
+      "active": true
+    }
+  ],
+  "orders": [
+    {
+      "id": "RB10231",
+      "created": "2026-10-25T09:11:29.292Z",
+      "customer": {
+        "name": "Aarav Sharma",
+        "phone": "9876543210",
+        "address": "Demo address, Mumbai",
+        "pincode": "400001",
+        "note": ""
+      },
+      "items": [
+        {
+          "id": "p1",
+          "name": "Alphonso Mango Juice",
+          "emoji": "🥭",
+          "price": 89,
+          "qty": 2
+        },
+        {
+          "id": "p7",
+          "name": "Tender Coconut Water",
+          "emoji": "🥥",
+          "price": 59,
+          "qty": 1
+        }
+      ],
+      "subtotal": 237,
+      "discount": 0,
+      "coupon": "",
+      "delivery": 40,
+      "total": 277,
+      "payment": "COD",
+      "status": "Placed",
+      "history": [
+        {
+          "status": "Placed",
+          "at": "2026-10-25T09:11:29.292Z"
+        }
+      ]
+    },
+    {
+      "id": "RB10230",
+      "created": "2026-10-24T13:59:29.292Z",
+      "customer": {
+        "name": "Priya Nair",
+        "phone": "9812345678",
+        "address": "Demo address, Mumbai",
+        "pincode": "400001",
+        "note": ""
+      },
+      "items": [
+        {
+          "id": "p14",
+          "name": "Summer Combo – 6 Pack",
+          "emoji": "🧃",
+          "price": 399,
+          "qty": 1
+        }
+      ],
+      "subtotal": 399,
+      "discount": 0,
+      "coupon": "",
+      "delivery": 40,
+      "total": 439,
+      "payment": "UPI",
+      "status": "Out for delivery",
+      "history": [
+        {
+          "status": "Out for delivery",
+          "at": "2026-10-24T13:59:29.292Z"
+        }
+      ]
+    },
+    {
+      "id": "RB10229",
+      "created": "2026-10-23T13:59:29.292Z",
+      "customer": {
+        "name": "Rohan Mehta",
+        "phone": "9898989898",
+        "address": "Demo address, Mumbai",
+        "pincode": "400001",
+        "note": ""
+      },
+      "items": [
+        {
+          "id": "p5",
+          "name": "Kashmiri Pomegranate",
+          "emoji": "🍎",
+          "price": 119,
+          "qty": 2
+        },
+        {
+          "id": "p9",
+          "name": "Amla Immunity Shot",
+          "emoji": "🍏",
+          "price": 49,
+          "qty": 3
+        }
+      ],
+      "subtotal": 385,
+      "discount": 0,
+      "coupon": "",
+      "delivery": 40,
+      "total": 425,
+      "payment": "UPI",
+      "status": "Delivered",
+      "history": [
+        {
+          "status": "Delivered",
+          "at": "2026-10-23T13:59:29.292Z"
+        }
+      ]
+    },
+    {
+      "id": "RB10228",
+      "created": "2026-10-22T13:59:29.292Z",
+      "customer": {
+        "name": "Sneha Iyer",
+        "phone": "9765432109",
+        "address": "Demo address, Mumbai",
+        "pincode": "400001",
+        "note": ""
+      },
+      "items": [
+        {
+          "id": "p3",
+          "name": "Masala Jaljeera",
+          "emoji": "🌿",
+          "price": 59,
+          "qty": 4
+        }
+      ],
+      "subtotal": 236,
+      "discount": 0,
+      "coupon": "",
+      "delivery": 40,
+      "total": 276,
+      "payment": "COD",
+      "status": "Delivered",
+      "history": [
+        {
+          "status": "Delivered",
+          "at": "2026-10-22T13:59:29.292Z"
+        }
+      ]
+    },
+    {
+      "id": "RB10227",
+      "created": "2026-10-20T13:59:29.292Z",
+      "customer": {
+        "name": "Karan Singh",
+        "phone": "9123456780",
+        "address": "Demo address, Mumbai",
+        "pincode": "400001",
+        "note": ""
+      },
+      "items": [
+        {
+          "id": "p10",
+          "name": "Litchi Delight",
+          "emoji": "🍑",
+          "price": 99,
+          "qty": 2
+        },
+        {
+          "id": "p2",
+          "name": "Aam Panna",
+          "emoji": "🥭",
+          "price": 69,
+          "qty": 2
+        }
+      ],
+      "subtotal": 336,
+      "discount": 0,
+      "coupon": "",
+      "delivery": 40,
+      "total": 376,
+      "payment": "COD",
+      "status": "Delivered",
+      "history": [
+        {
+          "status": "Delivered",
+          "at": "2026-10-20T13:59:29.292Z"
+        }
+      ]
+    }
+  ]
+}
