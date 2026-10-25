@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Panel – Rasa Bharat</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F8F4;--ink:#23312b;--mut:#76847c;--org:#FF8A1F;--grn:#2FA84F;--pink:#FF4F7B;--blue:#3B82F6;--line:#e8ede6;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Poppins,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px}
+h1,h2,h3{font-family:Fraunces,serif}
+button{font-family:inherit;cursor:pointer;border:0}
+input,select,textarea{font-family:inherit;font-size:14px}
+.login{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#FFF1D6,#FFE3E8 50%,#E4F7EA)}
+.lbox{background:#fff;padding:40px;border-radius:30px;width:380px;max-width:92%;box-shadow:0 20px 60px rgba(0,0,0,.1);text-align:center}
+.lbox .ic{width:70px;height:70px;border-radius:22px;background:linear-gradient(135deg,var(--org),var(--pink));display:grid;place-items:center;font-size:36px;margin:0 auto 14px}
+.lbox h2{font-size:28px}.lbox p{color:var(--mut);margin:4px 0 20px}
+.fi{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:12px;outline:none;background:#fff}
+.fi:focus{border-color:var(--org)}
+.btn{background:linear-gradient(135deg,var(--org),#ff6a3d);color:#fff;padding:11px 22px;border-radius:12px;font-weight:600}
+.btn.sm{padding:7px 14px;font-size:13px;border-radius:10px}
+.btn.g{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btn.r{background:#FFE8ED;color:var(--pink)}
+.btn.gr{background:var(--grn)}
+.app{display:none;min-height:100vh}
+.side{position:fixed;left:0;top:0;bottom:0;width:240px;background:#fff;border-right:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column;z-index:20}
+.brand{font-family:Fraunces,serif;font-weight:800;font-size:22px;display:flex;align-items:center;gap:10px;margin-bottom:6px;padding:0 8px}
+.brand i{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--org),var(--pink));display:grid;place-items:center;font-style:normal}
+.side small{padding:0 8px;color:var(--mut);margin-bottom:22px}
+.tab{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:none;color:var(--ink);font-weight:500;width:100%;text-align:left;margin-bottom:4px;font-size:14px}
+.tab:hover{background:#FFF6EA}.tab.on{background:#FFEBD2;color:#d96a00;font-weight:600}
+.tab .n{margin-left:auto;background:var(--pink);color:#fff;border-radius:50px;padding:0 8px;font-size:11px}
+.side .bot{margin-top:auto}
+.main{margin-left:240px;padding:28px 34px 60px}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:12px;flex-wrap:wrap}
+.top h2{font-size:30px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-bottom:22px}
+.st{background:var(--card);border-radius:22px;padding:20px;border:1px solid var(--line)}
+.st .i{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:22px;margin-bottom:12px}
+.st b{font-family:Fraunces,serif;font-size:28px;display:block}.st span{color:var(--mut);font-size:13px}
+.panel{background:var(--card);border-radius:22px;padding:22px;border:1px solid var(--line);margin-bottom:22px}
+.panel h3{font-size:20px;margin-bottom:14px}
+.two{display:grid;grid-template-columns:1.4fr 1fr;gap:22px}
+.chart{display:flex;align-items:flex-end;gap:14px;height:190px;padding-top:10px}
+.bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-size:11px;color:var(--mut)}
+.bar div{width:100%;max-width:46px;background:linear-gradient(180deg,var(--org),#ffb86b);border-radius:10px 10px 4px 4px;min-height:4px;transition:.5s}
+.bar b{color:var(--ink);font-size:11px;margin-bottom:4px}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut);padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:12px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border:0}
+.tw{overflow-x:auto}
+.em{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:24px}
+.tag{display:inline-block;padding:3px 11px;border-radius:50px;font-size:12px;font-weight:600}
+.s-Placed{background:#FFF0D6;color:#b86e00}.s-Confirmed{background:#E5F0FF;color:#2563eb}.s-Packed{background:#EFE5FF;color:#7c3aed}
+.s-Out{background:#E0F7FA;color:#0e7490}.s-Delivered{background:#E4F7EA;color:#16883a}.s-Cancelled{background:#FFE8ED;color:#d6336c}
+.on-b{background:#E4F7EA;color:#16883a}.off-b{background:#eee;color:#888}
+.bar2{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.bar2 .fi{max-width:260px}
+.sw{position:relative;width:42px;height:24px;display:inline-block}
+.sw input{display:none}.sw span{position:absolute;inset:0;background:#d5dbd6;border-radius:50px;transition:.2s;cursor:pointer}
+.sw span:before{content:"";position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
+.sw input:checked+span{background:var(--grn)}.sw input:checked+span:before{transform:translateX(18px)}
+.ov{position:fixed;inset:0;background:rgba(30,35,30,.45);z-index:90;display:none;place-items:center;padding:16px}
+.ov.on{display:grid}
+.modal{background:#fff;border-radius:26px;padding:28px;width:620px;max-width:100%;max-height:92vh;overflow:auto}
+.modal h3{font-size:24px;margin-bottom:14px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px}
+.fg .w{grid-column:1/-1}
+label{display:block;font-size:12px;font-weight:600;color:var(--mut);margin:10px 0 5px}
+.acts{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
+.toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,90px);background:var(--ink);color:#fff;padding:12px 24px;border-radius:50px;z-index:200;transition:.35s}
+.toast.on{transform:translate(-50%,0)}
+.mode{font-size:12px;padding:6px 12px;border-radius:50px;background:#E4F7EA;color:#16883a;font-weight:600}
+.mode.l{background:#FFF0D6;color:#b86e00}
+.menu{display:none;position:fixed;top:14px;left:14px;z-index:30;background:#fff;border:1px solid var(--line);width:42px;height:42px;border-radius:12px;font-size:20px}
+.low{color:var(--pink);font-weight:600}
+@media(max-width:900px){.side{transform:translateX(-100%);transition:.3s}.side.on{transform:none}.main{margin-left:0;padding:70px 16px 40px}.menu{display:block}.two{grid-template-columns:1fr}.fg{grid-template-columns:1fr}}
+@media print{.side,.menu,.top,.acts{display:none}}
+</style>
+</head>
+<body>
+<div class="login" id="login"><div class="lbox">
+  <div class="ic">🥭</div><h2>Admin Panel</h2><p>Sign in to manage your juice store</p>
+  <input class="fi" type="password" id="pw" placeholder="Admin password" onkeydown="if(event.key==='Enter')doLogin()">
+  <button class="btn" style="width:100%;margin-top:14px" onclick="doLogin()">Sign in →</button>
+  <p id="lerr" style="color:var(--pink);margin:12px 0 0;font-size:13px"></p>
+  <p style="font-size:12px;margin-top:14px">Default password: <b>admin123</b> (change it in Settings)</p>
+</div></div>
+
+<button class="menu" onclick="document.querySelector('.side').classList.toggle('on')">☰</button>
+<div class="app" id="app">
+  <aside class="side">
+    <div class="brand"><i>🥭</i><span id="sbBrand">Rasa Bharat</span></div><small>Store admin</small>
+    <button class="tab on" data-t="dash" onclick="go('dash')">📊 Dashboard</button>
+    <button class="tab" data-t="orders" onclick="go('orders')">📦 Orders <span class="n" id="newN" style="display:none"></span></button>
+    <button class="tab" data-t="products" onclick="go('products')">🧃 Products</button>
+    <button class="tab" data-t="coupons" onclick="go('coupons')">🎟️ Coupons</button>
+    <button class="tab" data-t="settings" onclick="go('settings')">⚙️ Settings</button>
+    <div class="bot"><a class="tab" href="index.html" target="_blank" style="text-decoration:none">🌐 View store</a><button class="tab" onclick="logout()">🚪 Log out</button></div>
+  </aside>
+  <main class="main" id="main"></main>
+</div>
+<div class="ov" id="ov" onmousedown="if(event.target===this)closeM()"><div class="modal" id="modal"></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="core.js"></script>
+<script src="api.js"></script>
+<script>
+let D=null,key=sessionStorage.getItem('rb_key')||'',tab='dash',ofilter='All',oq='',pq='',lastCount=null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const inr=n=>'₹'+Number(n).toLocaleString('en-IN');
+const STAT=['Placed','Confirmed','Packed','Out for delivery','Delivered','Cancelled'];
+const sc=s=>'s-'+s.split(' ')[0];
+const fdate=d=>new Date(d).toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2200)}
+function openM(h){$('modal').innerHTML=h;$('ov').classList.add('on')}
+function closeM(){$('ov').classList.remove('on')}
+async function save(fn,msg){try{D=await API.mutate(key,fn);if(msg)toast(msg);render()}catch(e){toast('⚠️ '+e.message)}}
+
+async function doLogin(){
+  const pw=$('pw').value;
+  await API.pub(); // detects server vs local mode
+  try{D=await API.adminGet(pw);key=pw;sessionStorage.setItem('rb_key',pw);boot()}
+  catch(e){$('lerr').textContent='Wrong password. Please try again.'}
+}
+function logout(){sessionStorage.removeItem('rb_key');location.reload()}
+function boot(){
+  $('login').style.display='none';$('app').style.display='block';
+  $('sbBrand').textContent=D.settings.brand;lastCount=D.orders.length;render();
+  setInterval(poll,15000);
+}
+async function poll(){
+  try{const n=await API.adminGet(key);
+    if(n.orders.length>lastCount){toast('🔔 New order received!');}
+    lastCount=n.orders.length;
+    const changed=JSON.stringify(n.orders)!==JSON.stringify(D.orders)||JSON.stringify(n.products)!==JSON.stringify(D.products);
+    D=n;if(changed&&!$('ov').classList.contains('on')&&['dash','orders'].includes(tab))render();else updBadge()}catch(e){}
+}
+function go(t){tab=t;document.querySelectorAll('.tab[data-t]').forEach(b=>b.classList.toggle('on',b.dataset.t===t));document.querySelector('.side').classList.remove('on');render()}
+function updBadge(){const n=D.orders.filter(o=>o.status==='Placed').length;const b=$('newN');b.style.display=n?'inline':'none';b.textContent=n}
+function render(){updBadge();({dash,orders,products,coupons,settings})[tab]()}
+const set=h=>$('main').innerHTML=h;
+const live=o=>o.status!=='Cancelled';
+
+/* ---------- Dashboard ---------- */
+function dash(){
+  const O=D.orders.filter(live),today=new Date().toDateString();
+  const rev=O.reduce((a,o)=>a+o.total,0),tr=O.filter(o=>new Date(o.created).toDateString()===today).reduce((a,o)=>a+o.total,0);
+  const low=D.products.filter(p=>p.stock<=10);
+  const days=[...Array(7)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()-6+i);return{l:d.toLocaleDateString('en-IN',{weekday:'short'}),v:O.filter(o=>new Date(o.created).toDateString()===d.toDateString()).reduce((a,o)=>a+o.total,0)}});
+  const mx=Math.max(...days.map(d=>d.v),1);
+  const sold={};O.forEach(o=>o.items.forEach(i=>sold[i.name]=(sold[i.name]||0)+i.qty));
+  const top=Object.entries(sold).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  set(`<div class="top"><div><h2>Welcome back 👋</h2><span style="color:var(--mut)">Here's how ${esc(D.settings.brand)} is doing</span></div><span class="mode ${API.mode==='server'?'':'l'}">${API.mode==='server'?'● Live backend':'● Browser storage mode'}</span></div>
+  <div class="cards">
+   <div class="st"><div class="i" style="background:#FFF0D6">💰</div><b>${inr(tr)}</b><span>Today's revenue</span></div>
+   <div class="st"><div class="i" style="background:#E4F7EA">📈</div><b>${inr(rev)}</b><span>Total revenue</span></div>
+   <div class="st"><div class="i" style="background:#E5F0FF">📦</div><b>${D.orders.length}</b><span>Total orders</span></div>
+   <div class="st"><div class="i" style="background:#FFE8ED">⏳</div><b>${D.orders.filter(o=>o.status==='Placed').length}</b><span>New / pending</span></div>
+   <div class="st"><div class="i" style="background:#EFE5FF">🧃</div><b>${D.products.length}</b><span>Products</span></div>
+   <div class="st"><div class="i" style="background:#FFEAD8">⚠️</div><b>${low.length}</b><span>Low stock (≤10)</span></div>
+  </div>
+  <div class="two"><div class="panel"><h3>Last 7 days sales</h3><div class="chart">${days.map(d=>`<div class="bar"><b>${d.v?inr(d.v):''}</b><div style="height:${Math.max(d.v/mx*85,3)}%"></div><span style="margin-top:6px">${d.l}</span></div>`).join('')}</div></div>
+  <div class="panel"><h3>🔥 Top sellers</h3>${top.length?top.map(([n,q],i)=>`<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)"><span>${i+1}. ${esc(n)}</span><b>${q} sold</b></div>`).join(''):'<p style="color:var(--mut)">No sales yet</p>'}</div></div>
+  <div class="two"><div class="panel"><h3>Recent orders</h3><div class="tw"><table>${D.orders.slice(0,6).map(o=>`<tr style="cursor:pointer" onclick="viewOrder('${o.id}')"><td><b>${o.id}</b><br><small style="color:var(--mut)">${fdate(o.created)}</small></td><td>${esc(o.customer.name)}</td><td>${inr(o.total)}</td><td><span class="tag ${sc(o.status)}">${o.status}</span></td></tr>`).join('')||'<tr><td>No orders yet</td></tr>'}</table></div></div>
+  <div class="panel"><h3>⚠️ Low stock</h3>${low.length?low.map(p=>`<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)"><span>${esc(p.emoji)} ${esc(p.name)}</span><span class="low">${p.stock} left</span></div>`).join(''):'<p style="color:var(--mut)">All products are well stocked ✅</p>'}</div></div>`);
+}
+
+/* ---------- Orders ---------- */
+function orders(){
+  let L=D.orders.filter(o=>(ofilter==='All'||o.status===ofilter)&&(o.id+o.customer.name+o.customer.phone).toLowerCase().includes(oq.toLowerCase()));
+  set(`<div class="top"><h2>Orders</h2><button class="btn sm g" onclick="csv()">⬇️ Export CSV</button></div>
+  <div class="bar2"><input class="fi" placeholder="🔍 Search ID, name, phone" value="${esc(oq)}" oninput="oq=this.value;orders();this.focus()"><select class="fi" style="max-width:200px" onchange="ofilter=this.value;orders()">${['All',...STAT].map(s=>`<option ${s===ofilter?'selected':''}>${s}</option>`).join('')}</select></div>
+  <div class="panel tw"><table><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th></th></tr>
+  ${L.map(o=>`<tr><td><b>${o.id}</b><br><small style="color:var(--mut)">${fdate(o.created)}</small></td><td>${esc(o.customer.name)}<br><small style="color:var(--mut)">${esc(o.customer.phone)}</small></td><td>${o.items.reduce((a,i)=>a+i.qty,0)}</td><td><b>${inr(o.total)}</b></td><td>${o.payment}</td>
+  <td><select class="fi" style="padding:6px 8px;font-size:12px;width:150px" onchange="setStatus('${o.id}',this.value)">${STAT.map(s=>`<option ${s===o.status?'selected':''}>${s}</option>`).join('')}</select></td><td><button class="btn sm g" onclick="viewOrder('${o.id}')">View</button></td></tr>`).join('')||'<tr><td colspan="7" style="text-align:center;color:var(--mut);padding:40px">No orders found</td></tr>'}</table></div>`);
+}
+function setStatus(id,st){
+  save(s=>{const o=s.orders.find(x=>x.id===id);if(!o||o.status===st)return;
+    if(st==='Cancelled'&&o.status!=='Cancelled')o.items.forEach(i=>{const p=s.products.find(x=>x.id===i.id);if(p)p.stock+=i.qty});
+    if(o.status==='Cancelled'&&st!=='Cancelled')o.items.forEach(i=>{const p=s.products.find(x=>x.id===i.id);if(p)p.stock=Math.max(0,p.stock-i.qty)});
+    o.status=st;(o.history=o.history||[]).push({status:st,at:new Date().toISOString()})},'Status updated to '+st);
+}
+function viewOrder(id){
+  const o=D.orders.find(x=>x.id===id);if(!o)return;
+  openM(`<h3>Order ${o.id} <span class="tag ${sc(o.status)}" style="font-size:13px;vertical-align:middle">${o.status}</span></h3>
+  <p style="color:var(--mut);margin-bottom:12px">${fdate(o.created)} · ${o.payment}</p>
+  <div class="panel" style="padding:14px"><b>${esc(o.customer.name)}</b> · 📞 ${esc(o.customer.phone)}<br>📍 ${esc(o.customer.address)} ${esc(o.customer.pincode)}${o.customer.note?'<br>📝 '+esc(o.customer.note):''}</div>
+  <table>${o.items.map(i=>`<tr><td>${esc(i.emoji)} ${esc(i.name)}</td><td>× ${i.qty}</td><td style="text-align:right">${inr(i.price*i.qty)}</td></tr>`).join('')}
+  <tr><td colspan="2">Subtotal</td><td style="text-align:right">${inr(o.subtotal)}</td></tr>${o.discount?`<tr><td colspan="2">Discount (${esc(o.coupon)})</td><td style="text-align:right">−${inr(o.discount)}</td></tr>`:''}
+  <tr><td colspan="2">Delivery</td><td style="text-align:right">${o.delivery?inr(o.delivery):'FREE'}</td></tr><tr><td colspan="2"><b>Total</b></td><td style="text-align:right"><b>${inr(o.total)}</b></td></tr></table>
+  <div class="acts"><button class="btn sm r" onclick="delOrder('${o.id}')">Delete</button><a class="btn sm gr" style="text-decoration:none" target="_blank" href="https://wa.me/91${o.customer.phone}?text=${encodeURIComponent('Hi '+o.customer.name+', your order '+o.id+' is '+o.status+'. Thank you for choosing '+D.settings.brand+'!')}">💬 WhatsApp</a><button class="btn sm g" onclick="printInv('${o.id}')">🖨️ Invoice</button><button class="btn sm" onclick="closeM()">Close</button></div>`);
+}
+function delOrder(id){if(confirm('Delete this order permanently?'))save(s=>{s.orders=s.orders.filter(o=>o.id!==id)},'Order deleted'),closeM()}
+function printInv(id){
+  const o=D.orders.find(x=>x.id===id),w=window.open('','_blank');
+  w.document.write(`<html><body style="font-family:sans-serif;max-width:560px;margin:30px auto"><h1>${esc(D.settings.brand)}</h1><p>Invoice ${o.id} · ${new Date(o.created).toLocaleString('en-IN')}</p><p><b>${esc(o.customer.name)}</b><br>${esc(o.customer.address)}<br>${esc(o.customer.phone)}</p><table width=100% cellpadding=6 border=1 style="border-collapse:collapse">${o.items.map(i=>`<tr><td>${esc(i.name)}</td><td>${i.qty}</td><td>₹${i.price*i.qty}</td></tr>`).join('')}<tr><td colspan=2>Delivery</td><td>₹${o.delivery}</td></tr><tr><td colspan=2>Discount</td><td>−₹${o.discount}</td></tr><tr><td colspan=2><b>Total (${o.payment})</b></td><td><b>₹${o.total}</b></td></tr></table><p>Thank you! 🧡</p><script>print()<\/script></body></html>`);w.document.close();
+}
+function csv(){
+  const r=[['Order','Date','Name','Phone','Address','Items','Subtotal','Discount','Delivery','Total','Payment','Status'],...D.orders.map(o=>[o.id,o.created,o.customer.name,o.customer.phone,o.customer.address,o.items.map(i=>i.qty+'x '+i.name).join('; '),o.subtotal,o.discount,o.delivery,o.total,o.payment,o.status])];
+  dl('orders.csv',r.map(x=>x.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n'),'text/csv');
+}
+function dl(name,txt,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=name;a.click()}
+
+/* ---------- Products ---------- */
+function products(){
+  const L=D.products.filter(p=>(p.name+p.category).toLowerCase().includes(pq.toLowerCase()));
+  set(`<div class="top"><h2>Products</h2><button class="btn" onclick="editP()">＋ Add product</button></div>
+  <div class="bar2"><input class="fi" placeholder="🔍 Search products" value="${esc(pq)}" oninput="pq=this.value;products();this.focus()"></div>
+  <div class="panel tw"><table><tr><th></th><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Visible</th><th></th></tr>
+  ${L.map(p=>`<tr><td><div class="em" style="background:${p.color}33">${p.image?`<img src="${esc(p.image)}" style="width:44px;height:44px;border-radius:14px;object-fit:cover">`:esc(p.emoji)}</div></td><td><b>${esc(p.name)}</b><br><small style="color:var(--mut)">${esc(p.size)} ${p.badge?'· '+esc(p.badge):''}</small></td><td>${esc(p.category)}</td>
+  <td><b>${inr(p.price)}</b><br><small style="color:var(--mut)"><s>${inr(p.mrp)}</s></small></td>
+  <td><input class="fi" type="number" min="0" style="width:80px;padding:6px 8px;${p.stock<=10?'border-color:var(--pink)':''}" value="${p.stock}" onchange="qStock('${p.id}',this.value)"></td>
+  <td><label class="sw" style="margin:0"><input type="checkbox" ${p.active?'checked':''} onchange="qActive('${p.id}',this.checked)"><span></span></label></td>
+  <td style="white-space:nowrap"><button class="btn sm g" onclick="editP('${p.id}')">Edit</button> <button class="btn sm r" onclick="delP('${p.id}')">🗑</button></td></tr>`).join('')||'<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--mut)">No products</td></tr>'}</table></div>`);
+}
+const qStock=(id,v)=>save(s=>{s.products.find(p=>p.id===id).stock=Math.max(0,parseInt(v)||0)},'Stock updated');
+const qActive=(id,v)=>save(s=>{s.products.find(p=>p.id===id).active=v},v?'Product visible':'Product hidden');
+const delP=id=>{if(confirm('Delete this product?'))save(s=>{s.products=s.products.filter(p=>p.id!==id)},'Product deleted')};
+function editP(id){
+  const p=D.products.find(x=>x.id===id)||{name:'',category:D.settings.categories[0],price:'',mrp:'',stock:20,emoji:'🥤',color:'#FF8A1F',image:'',size:'600 ml',badge:'',rating:4.5,desc:'',shape:'pet',label:'',active:true};
+  openM(`<h3>${id?'Edit':'Add'} product</h3><div class="fg">
+  <div class="w"><label>Name</label><input class="fi" id="p_name" value="${esc(p.name)}"></div>
+  <div><label>Category</label><select class="fi" id="p_cat">${D.settings.categories.map(c=>`<option ${c===p.category?'selected':''}>${esc(c)}</option>`).join('')}</select></div>
+  <div><label>Size</label><input class="fi" id="p_size" value="${esc(p.size)}"></div>
+  <div><label>Selling price (₹)</label><input class="fi" type="number" id="p_price" value="${p.price}"></div>
+  <div><label>MRP (₹)</label><input class="fi" type="number" id="p_mrp" value="${p.mrp}"></div>
+  <div><label>Stock</label><input class="fi" type="number" id="p_stock" value="${p.stock}"></div>
+  <div><label>Rating (1–5)</label><input class="fi" type="number" step="0.1" max="5" id="p_rate" value="${p.rating}"></div>
+  <div><label>Bottle type</label><select class="fi" id="p_shape">${[['pet','Plastic bottle'],['glass','Glass bottle'],['can','Can'],['tetra','Carton / tetra pack']].map(([v,n])=>`<option value="${v}" ${(p.shape||'pet')===v?'selected':''}>${n}</option>`).join('')}</select></div>
+  <div><label>Text on bottle label (short)</label><input class="fi" id="p_label" maxlength="12" value="${esc(p.label||'')}"></div>
+  <div><label>Emoji icon</label><input class="fi" id="p_emoji" value="${esc(p.emoji)}"></div>
+  <div><label>Drink / bottle colour</label><input class="fi" type="color" id="p_color" value="${p.color}" style="height:42px;padding:3px"></div>
+  <div class="w"><label>Image URL (optional – overrides emoji)</label><input class="fi" id="p_img" value="${esc(p.image)}" placeholder="https://…"></div>
+  <div class="w"><label>Badge (e.g. Bestseller, New)</label><input class="fi" id="p_badge" value="${esc(p.badge)}"></div>
+  <div class="w"><label>Description</label><textarea class="fi" id="p_desc" rows="3">${esc(p.desc)}</textarea></div></div>
+  <div class="acts"><button class="btn sm g" onclick="closeM()">Cancel</button><button class="btn sm" onclick="saveP('${id||''}')">Save product</button></div>`);
+}
+function saveP(id){
+  const g=i=>$(i).value.trim();
+  if(!g('p_name')||!(+g('p_price')>0)){toast('Enter a name and a valid price');return}
+  const d={name:g('p_name'),category:g('p_cat'),size:g('p_size'),price:+g('p_price'),mrp:+g('p_mrp')||+g('p_price'),stock:Math.max(0,parseInt(g('p_stock'))||0),rating:Math.min(5,+g('p_rate')||4.5),emoji:g('p_emoji')||'🥤',shape:g('p_shape'),label:g('p_label'),color:g('p_color'),image:g('p_img'),badge:g('p_badge'),desc:g('p_desc')};
+  closeM();
+  save(s=>{if(id)Object.assign(s.products.find(p=>p.id===id),d);else s.products.unshift({id:'p'+Date.now(),active:true,...d})},id?'Product updated':'Product added');
+}
+
+/* ---------- Coupons ---------- */
+function coupons(){
+  set(`<div class="top"><h2>Coupons</h2><button class="btn" onclick="editC()">＋ New coupon</button></div>
+  <div class="panel tw"><table><tr><th>Code</th><th>Discount</th><th>Min order</th><th>Active</th><th></th></tr>
+  ${D.coupons.map((c,i)=>`<tr><td><b style="letter-spacing:1px">${esc(c.code)}</b></td><td>${c.type==='percent'?c.value+'% off':inr(c.value)+' off'}</td><td>${inr(c.minOrder)}</td>
+  <td><label class="sw" style="margin:0"><input type="checkbox" ${c.active?'checked':''} onchange="save(s=>{s.coupons[${i}].active=this.checked},'Coupon updated')"><span></span></label></td>
+  <td><button class="btn sm g" onclick="editC(${i})">Edit</button> <button class="btn sm r" onclick="if(confirm('Delete coupon?'))save(s=>{s.coupons.splice(${i},1)},'Deleted')">🗑</button></td></tr>`).join('')||'<tr><td colspan="5" style="text-align:center;padding:40px;color:var(--mut)">No coupons yet</td></tr>'}</table></div>`);
+}
+function editC(i){
+  const c=i!==undefined?D.coupons[i]:{code:'',type:'percent',value:10,minOrder:199,active:true};
+  openM(`<h3>${i!==undefined?'Edit':'New'} coupon</h3><div class="fg"><div><label>Code</label><input class="fi" id="c_code" value="${esc(c.code)}" style="text-transform:uppercase"></div>
+  <div><label>Type</label><select class="fi" id="c_type"><option value="percent" ${c.type==='percent'?'selected':''}>Percent (%)</option><option value="flat" ${c.type==='flat'?'selected':''}>Flat (₹)</option></select></div>
+  <div><label>Value</label><input class="fi" type="number" id="c_val" value="${c.value}"></div><div><label>Minimum order (₹)</label><input class="fi" type="number" id="c_min" value="${c.minOrder}"></div></div>
+  <div class="acts"><button class="btn sm g" onclick="closeM()">Cancel</button><button class="btn sm" onclick="saveC(${i===undefined?-1:i})">Save</button></div>`);
+}
+function saveC(i){
+  const code=$('c_code').value.trim().toUpperCase();if(!code||!(+$('c_val').value>0)){toast('Enter code and value');return}
+  const d={code,type:$('c_type').value,value:+$('c_val').value,minOrder:+$('c_min').value||0};closeM();
+  save(s=>{if(i>=0)Object.assign(s.coupons[i],d);else s.coupons.push({active:true,...d})},'Coupon saved');
+}
+
+/* ---------- Settings ---------- */
+function settings(){
+  const s=D.settings;
+  const f=(k,l,w)=>`<div class="${w?'w':''}"><label>${l}</label><input class="fi" id="s_${k}" value="${esc(s[k])}"></div>`;
+  set(`<div class="top"><h2>Store settings</h2><button class="btn" onclick="saveS()">💾 Save settings</button></div>
+  <div class="panel"><h3>🏪 Store</h3><label style="display:flex;align-items:center;gap:12px;margin:0 0 10px;color:var(--ink)"><span class="sw"><input type="checkbox" id="s_open" ${s.storeOpen?'checked':''}><span></span></span> Store is open for orders</label>
+   <div class="fg">${f('brand','Brand name')}${f('tagline','Tagline')}${f('announcement','Top announcement bar (leave empty to hide)',1)}
+   <div class="w"><label>Hero title (use new line for second line – shown in orange)</label><textarea class="fi" id="s_heroTitle" rows="2">${esc(s.heroTitle)}</textarea></div>${f('heroSub','Hero sub-text',1)}</div></div>
+  <div class="panel"><h3>🚚 Delivery &amp; payments</h3><div class="fg">${f('deliveryFee','Delivery fee (₹)')}${f('freeDeliveryAbove','Free delivery above (₹)')}${f('upi','UPI ID')}
+   <div class="w"><label>Categories (comma separated)</label><input class="fi" id="s_cats" value="${esc(s.categories.join(', '))}"></div></div></div>
+  <div class="panel"><h3>📞 Contact</h3><div class="fg">${f('phone','Phone')}${f('whatsapp','WhatsApp number (with country code, e.g. 919876543210)')}${f('email','Email')}${f('address','Address')}</div></div>
+  <div class="panel"><h3>🔒 Security &amp; data</h3><div class="fg">${f('adminPassword','Admin password')}</div>
+   <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap"><button class="btn sm g" onclick="dl('backup.json',JSON.stringify(D,null,2),'application/json')">⬇️ Backup data</button>
+   <button class="btn sm g" onclick="$('imp').click()">⬆️ Restore backup</button><input type="file" id="imp" accept=".json" style="display:none" onchange="restore(this.files[0])">
+   <button class="btn sm r" onclick="resetDemo()">Reset to demo data</button></div></div>`);
+}
+function saveS(){
+  const g=k=>$('s_'+k).value.trim();
+  const cats=g('cats').split(',').map(x=>x.trim()).filter(Boolean);
+  if(!g('brand')||!g('adminPassword')||!cats.length){toast('Brand, password and categories are required');return}
+  const v={brand:g('brand'),tagline:g('tagline'),announcement:g('announcement'),heroTitle:$('s_heroTitle').value,heroSub:g('heroSub'),deliveryFee:+g('deliveryFee')||0,freeDeliveryAbove:+g('freeDeliveryAbove')||0,upi:g('upi'),phone:g('phone'),whatsapp:g('whatsapp'),email:g('email'),address:g('address'),adminPassword:g('adminPassword'),categories:cats,storeOpen:$('s_open').checked};
+  const oldKey=key;
+  API.mutate(oldKey,s=>{Object.assign(s.settings,v)}).then(s=>{D=s;key=v.adminPassword;sessionStorage.setItem('rb_key',key);$('sbBrand').textContent=v.brand;toast('✅ Settings saved – live on your store');render()}).catch(e=>toast('⚠️ '+e.message));
+}
+function restore(f){
+  if(!f)return;const r=new FileReader();
+  r.onload=async()=>{
+    let d;try{d=JSON.parse(r.result);if(!d.products||!d.settings||!d.orders||!d.coupons)throw 0}catch(e){toast('Invalid backup file');return}
+    if(!confirm('Replace current data with this backup?'))return;
+    try{await API.adminPut(key,d);key=d.settings.adminPassword;sessionStorage.setItem('rb_key',key);D=d;toast('Backup restored');render()}catch(e){toast('⚠️ '+e.message)}
+  };
+  r.readAsText(f);
+}
+async function resetDemo(){
+  if(!confirm('Delete ALL your data and restore the demo store? (password goes back to admin123)'))return;
+  try{await API.adminPut(key,Core.seed());key='admin123';sessionStorage.setItem('rb_key',key);D=await API.adminGet(key);toast('Demo data restored');render()}catch(e){toast('⚠️ '+e.message)}
+}
+if(key){API.pub().then(()=>API.adminGet(key)).then(d=>{D=d;boot()}).catch(()=>{})}
+</script>
+</body>
+</html>
